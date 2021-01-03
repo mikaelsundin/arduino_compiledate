@@ -10,7 +10,7 @@ void checkCompileTime(uint32_t eeAdr = 2, uint32_t compileTime = 5) {
 	time_t timestamp = CompileDate::parseGccDateTime(F(__DATE__), F(__TIME__), compileTime);
 	time_t lastTimestamp;
 
-	//Use simple hash to see if we have recompiled the sketch.
+	//Check if timestamp has changed since last time.
 	EEPROM.get(eeAdr, lastTimestamp);
 	if (lastTimestamp != timestamp) {
 		EEPROM.put(eeAdr, timestamp);

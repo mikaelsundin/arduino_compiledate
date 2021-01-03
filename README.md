@@ -3,7 +3,7 @@ A simple Arduino library for converting compile date and time to be used to setu
 
 # Usage Example
 <pre><code>
-#include <time.h>
+#include < time.h >
 #include "CompileDate.h"
 
 void checkCompileTime(uint32_t eeAdr = 2, uint32_t compileTime = 5) {

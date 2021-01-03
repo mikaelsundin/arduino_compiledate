@@ -16,7 +16,7 @@ void checkCompileTime(uint32_t eeAdr = 2, uint32_t compileTime = 5) {
 		EEPROM.put(eeAdr, timestamp);
 		Serial.println("Compile time changed");
 
-    //convert to YYYY MM DD HH MM SS struct.
+		//convert to YYYY MM DD HH MM SS struct.
 		tm* rtc = gmtime(&compileTime);
 
 		//Run code here to setup a RTC.

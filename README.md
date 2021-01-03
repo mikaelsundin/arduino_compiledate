@@ -6,16 +6,16 @@ A simple Arduino library for converting compile date and time to be used to setu
 #include "CompileDate.h"
 
 void checkCompileTime(uint32_t eeAdr = 2, uint32_t compileTime = 5) {
-	uint32_t lastHash;
-	uint32_t hash = CompileDate::parseGccDateTime(F(__DATE__), F(__TIME__));
+	time_t timestamp = CompileDate::parseGccDateTime(F(__DATE__), F(__TIME__), compileTime);
+	time_t lastTimestamp;
 
 	//Use simple hash to see if we have recompiled the sketch.
-	EEPROM.get(eeAdr, lastHash);
-	if (lastHash != hash) {
-		EEPROM.put(eeAdr, hash);
+	EEPROM.get(eeAdr, lastTimestamp);
+	if (lastTimestamp != timestamp) {
+		EEPROM.put(eeAdr, timestamp);
 		Serial.println("Compile time changed");
 
-		time_t compileTime = CompileDate::parseGccDateTime(F(__DATE__), F(__TIME__), compileTime);
+    //convert to YYYY MM DD HH MM SS struct.
 		tm* rtc = gmtime(&compileTime);
 
 		//Run code here to setup a RTC.

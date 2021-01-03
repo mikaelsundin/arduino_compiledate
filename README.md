@@ -2,6 +2,7 @@
 A simple Arduino library for converting compile date and time to be used to setup a RTC timer.
 
 # Usage Example
+<pre><code>
 #include <time.h>
 #include "CompileDate.h"
 
@@ -36,3 +37,4 @@ void setup(){
 void loop(){
 
 }
+</code></pre>
